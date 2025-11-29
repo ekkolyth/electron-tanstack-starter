@@ -1,8 +1,8 @@
 # Electron TanStack Starter
 
-A modern Electron application starter template built with React, TanStack Router, TanStack Query, and Tailwind CSS v4. This project provides a solid foundation for building cross-platform desktop applications with a modern web stack.
+A modern Electron application starter template.
 
-## 🚀 Features
+## Dev Tools / Stack
 
 - **Electron** - Cross-platform desktop app framework
 - **Electron Forge** - Complete tooling for Electron development
@@ -14,12 +14,12 @@ A modern Electron application starter template built with React, TanStack Router
 - **shadcn/ui** - Beautiful, accessible UI components
 - **TypeScript** - Full type safety
 
-## 📋 Prerequisites
+## Prerequisites
 
 - **Node.js** (v18 or higher)
 - **pnpm** (recommended)
 
-## 🛠️ Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -28,12 +28,12 @@ A modern Electron application starter template built with React, TanStack Router
    cd electron-tanstack-starter
    ```
 
-2. **Install dependencies**
+2. Install dependencies
    ```bash
    pnpm install
    ```
 
-## 🏃‍♂️ Getting Started
+## Getting Started
 
 ### Development Mode
 
@@ -68,8 +68,6 @@ This creates platform-specific installers in the `out/` directory:
 - **Windows**: `.exe` installer
 - **macOS**: `.dmg` and `.zip` files
 - **Linux**: `.deb` and `.rpm` packages
-
-## 📝 License
 
 MIT License
 
