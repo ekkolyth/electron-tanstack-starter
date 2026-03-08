@@ -20,7 +20,6 @@ function Index() {
       {/* Main Content */}
       <main className='flex-1 flex items-center justify-center p-8 lg:p-12'>
         <div className='max-w-4xl mx-auto text-center space-y-16'>
-          {/* Welcome Section */}
           <div className='space-y-8'>
             <div className='flex justify-center'>
               <Badge
@@ -41,7 +40,7 @@ function Index() {
             </div>
           </div>
 
-          {/* Interactive Counter Demo */}
+          {/* Counter */}
           <div className='max-w-lg mx-auto'>
             <Card className='bg-card/50 border-border/50 backdrop-blur-sm shadow-lg'>
               <CardHeader className='pb-6'>
