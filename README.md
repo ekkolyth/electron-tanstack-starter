@@ -40,7 +40,7 @@ A modern Electron application starter template built with React, TanStack Router
 Start the application in development mode with hot reload:
 
 ```bash
-bun start
+bun dev
 ```
 
 This will:
