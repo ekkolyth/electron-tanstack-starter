@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol, net } from 'electron';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import electronSquirrelStartup from 'electron-squirrel-startup';
@@ -8,6 +8,23 @@ const __dirname = path.dirname(__filename);
 
 if (electronSquirrelStartup) {
   app.quit();
+}
+
+// Custom protocol with V8 code caching — production JS is compiled once and
+// cached as bytecode, eliminating the parse+compile cost on subsequent launches.
+// Must be registered before app.whenReady().
+if (!MAIN_WINDOW_VITE_DEV_SERVER_URL) {
+  protocol.registerSchemesAsPrivileged([
+    {
+      scheme: 'app',
+      privileges: {
+        standard: true,
+        secure: true,
+        supportFetchAPI: true,
+        codeCache: true,
+      },
+    },
+  ]);
 }
 
 const createWindow = () => {
@@ -21,12 +38,9 @@ const createWindow = () => {
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
-  } else {
-    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
-  }
-
-  if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.webContents.openDevTools();
+  } else {
+    mainWindow.loadURL('app://./index.html');
   }
 };
 
@@ -34,6 +48,16 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  // Register protocol handler to serve renderer files via app:// scheme
+  if (!MAIN_WINDOW_VITE_DEV_SERVER_URL) {
+    const rendererPath = path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}`);
+    protocol.handle('app', (req) => {
+      const url = new URL(req.url);
+      const filePath = path.join(rendererPath, url.pathname);
+      return net.fetch(`file://${filePath}`);
+    });
+  }
+
   createWindow();
 
   // On OS X it's common to re-create a window in the app when the

@@ -2,9 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Navbar } from '@/components/navbar';
-import { Plus, Minus, RotateCcw, Zap, Code2, CoffeeIcon } from 'lucide-react';
+import { Plus, Minus, RotateCcw, Code2, CoffeeIcon } from 'lucide-react';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -21,15 +20,6 @@ function Index() {
       <main className='flex-1 flex items-center justify-center p-8 lg:p-12'>
         <div className='max-w-4xl mx-auto text-center space-y-16'>
           <div className='space-y-8'>
-            <div className='flex justify-center'>
-              <Badge
-                variant='outline'
-                className='bg-primary/10 text-primary border-primary/30 px-4 py-2'
-              >
-                <Zap className='size-4 mr-2' />
-                App Started Successfully
-              </Badge>
-            </div>
             <div className='space-y-6'>
               <h1 className='text-5xl lg:text-6xl font-bold text-balance leading-tight'>
                 Welcome to your <span className='text-primary'>Electron App</span>

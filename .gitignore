@@ -92,3 +92,8 @@ typings/
 out/
 
 .cursor/
+.claude/
+.agents/
+.opencode/
+
+dist/
